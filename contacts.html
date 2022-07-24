@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.min.css">
+	<title>Контакты</title>
+</head>
+<body>
+	<div class="wrapper">
+			<header class="header bg-header">
+	<section class="header__container">
+		<div class="header__icons">
+			<a class="header__icon-nav" href="index.html"><img src="img/header/Navigation (1).svg"
+					alt="Навигация"></img></a>
+			<a class="header__icon-book" href="contacts.html"><img src="img/header/book.svg" alt="Книжка"></img></a>
+		</div>
+		
+	</section>
+	<section class="header__section">
+		<div class="header__section-container">
+			<div class="header__title">Contact Us</div>
+			<div class="header__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna	aliqua.</div>
+		</div>
+	</section>
+</header>
+			<main class="main-contacts">
+	<div class="main-contacts__container">
+
+		<div class="main-contacts__block">
+			<section class="main-contacts__contacts">
+				<img class="main-contacts__contacts-img" src="img/main_2/Group (3).svg" alt="img">
+				<div class="main-contacts__contacts-adress">
+					<div class="main-contacts__contacts-title">ADRESS</div>
+					<div class="main-contacts__contacts-subtitle">Id convallis placerat sit sed duis id amet volutpat quam a, pharetra.</div>	
+				</div>
+				<div class="main-contacts__contacts-phone">
+					<div class="main-contacts__contacts-title">PHONE</div>
+					<div><a class="main-contacts__contacts-tel" href="tel:+7-812-7313-4321">+7-812-7313-4321</a></div>
+					<div><a class="main-contacts__contacts-tel" href="tel:+7-817-0000-1234">+7-817-0000-1234</a></div>
+				</div>
+				<div class="main-contacts__contacts-web">
+					<div class="main-contacts__contacts-title">ONLINE SERVICE</div>
+					<div><a class="main-contacts__contacts-site" target="_blank" href="https://www.site.com">www.site.com</a></div>
+					<div><a class="main-contacts__contacts-email" href="mailto:hello.site@gmail.com">hello.site@gmail.com</a></div>
+				</div>
+			</section>
+			<section class="main-contacts__form">
+				<form action="#" id="form">
+					<h2 class="main-contacts__form-title">SEND US MESSAGE</h2>
+					<div class="main-contacts__form-name">
+						<label for="text">Full Name</label>
+						<input type="text" placeholder="Your Name" id="text" data-form>
+					</div>
+					<div class="main-contacts__form-email">
+						<label for="email">Email</label>
+						<input type="email" placeholder="Your Email" id="email" data-form>
+					</div>
+					<div class="main-contacts__form-textarea">
+						<label for="textarea">Message</label>
+						<textarea  id="textarea" cols="30" rows="10">Your Message</textarea>
+					</div>
+					<button type="submit" class="main-contacts__form-btn">SUBMIT</button>
+				</form>
+			</section>
+
+		</div>
+		<section class="main-contacts__map">
+			<div id="map">
+				<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>"></script>
+				<script>
+					ymaps.ready(function () {
+						PIC_WIDTH = 1226,
+						PIC_HEIGHT = 500;
+						let myMap = new ymaps.Map('map', {
+							center: [55.742415, 37.620155],
+							zoom: 15
+						}),
+							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+								'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+							),
+							myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+								hintContent: 'Офис',
+								balloonContent: 'Часы работы: Пн-Пт: 08:00 - 17:00'
+							}, {
+								// Опции.
+								// Необходимо указать данный тип макета.
+								iconLayout: 'default#image',
+								// Своё изображение иконки метки.
+								iconImageHref: 'img/Иконка_Локации.svg',
+								// Размеры метки.
+								iconImageSize: [80, 60],
+								// Смещение левого верхнего угла иконки относительно
+								// её "ножки" (точки привязки).
+								iconImageOffset: [-40, -40]
+							})
+							myMap.geoObjects
+								.add(myPlacemark)
+						
+					})
+				</script>
+				
+			</div>
+		</section>
+		
+	</div>
+</main>
+<script>
+	let form = document.querySelector('#form')
+	let formsInput = document.querySelectorAll('[data-form]')
+	let inputEmail = document.querySelector('#email')
+
+	function validateEmail(email){
+		let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	}
+
+
+	form.onsubmit = function(){
+		let emailVal = inputEmail.value;
+		let emptyInputs = Array.from(formsInput).filter(input => input.value === "")
+
+		formsInput.forEach(input => {
+			if(input.value === ""){
+				input.classList.add("error")
+			}else{
+				input.classList.remove("error")
+			}
+		})
+
+		if(!validateEmail(emailVal)){
+			inputEmail.classList.add("error")
+			return false
+		}else{
+			inputEmail.classList.remove("error")
+		}
+		
+	}
+</script>
+
+			
+			<footer class="footer">
+	<div class="footer__container">
+		<div class="footer__top-block">
+			<div class="footer__top">
+				<div class="footer__title">
+					<p>Intersted to work	with our team?</p>
+				</div>
+				<div class="footer__text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna	aliqua. Ut enim ad minim veniam.</p>
+				</div>
+			</div>
+			<div class="footer__top-button">
+				<button class="footer__top-btn">Let's Talk</button>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<nav class="footer__contacts contacts">
+				<ul class="contacts__list">
+					<li class="contacts__description"><a href="">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></li>
+					<li class="contacts__phone"><a href="tel:+7-812-7313-4321">+7-812-7313-4321</a></li>
+					<li class="contacts__email"><a href="mailto:hello.site@gmail.com">hello.site@gmail.com</a></li>
+				</ul>
+			</nav>
+			<div class="footer__bottom-rights">2021 All rights reserved.</div>
+		</div>
+	</div>
+</footer>
+			
+		<script src="js/app.min.js"></script>
+	</div>
+</body>
+</html>
